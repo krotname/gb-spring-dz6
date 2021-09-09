@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,9 +16,10 @@ import javax.persistence.*;
 public class Buyer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
-
     private String name;
+    @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<Goods> goods;
 
 }

@@ -20,4 +20,6 @@ public class Goods {
 
     private String title;
     private double price;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Buyer buyer;
 }

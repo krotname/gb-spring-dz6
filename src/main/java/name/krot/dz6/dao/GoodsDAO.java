@@ -16,5 +16,12 @@ public class GoodsDAO {
         entityManager.persist(goods);
         entityManager.getTransaction().commit();
     }
+    public Goods get (Long id){
+        EntityManager entityManager = factory.createEntityManager();
+        entityManager.getTransaction().begin();
+        Goods reference = entityManager.find(Goods.class, id);
+        entityManager.getTransaction().commit();
+        return reference;
+    }
 
 }

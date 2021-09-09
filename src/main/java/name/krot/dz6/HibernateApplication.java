@@ -2,13 +2,11 @@ package name.krot.dz6;
 
 import name.krot.dz6.dao.BuyerDAO;
 import name.krot.dz6.dao.GoodsDAO;
+import name.krot.dz6.entity.Buyer;
 import name.krot.dz6.entity.Goods;
-import org.hibernate.cfg.Configuration;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import java.util.ArrayList;
 
 public class HibernateApplication {
 
@@ -19,12 +17,32 @@ public class HibernateApplication {
         GoodsDAO goodsDAO = context.getBean(GoodsDAO.class);
         BuyerDAO buyerDAO = context.getBean(BuyerDAO.class);
 
-        Goods good = context.getBean(Goods.class);
-        good.setPrice(100);
-        good.setTitle("fkfkf");
+        Goods morkov = context.getBean(Goods.class);
+        morkov.setTitle("Морковь");
+        morkov.setPrice(100);
 
-        goodsDAO.save(good);
+        Goods sparzha = context.getBean(Goods.class);
+        sparzha.setTitle("Спаржа");
+        sparzha.setPrice(200);
 
+        ArrayList<Goods> korzina = new ArrayList<>();
+
+        Buyer vasia = context.getBean(Buyer.class);
+        vasia.setName("Вася");
+        //vasia.setGoods(korzina);
+
+        sparzha.setBuyer(vasia);
+
+        goodsDAO.save(morkov);
+        goodsDAO.save(sparzha);
+
+        Goods goods1 = goodsDAO.get(1L);
+        Goods goods2 = goodsDAO.get(2L);
+        Buyer buyer = buyerDAO.get(1L);
+
+        System.out.println(goods1);
+        System.out.println(goods2);
+        System.out.println(buyer.getGoods());
 
 
     }
