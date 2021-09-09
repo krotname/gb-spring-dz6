@@ -1,0 +1,20 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:9996/shop</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">1111</property>
+        <property name="connection.pool_size">10</property>
+        <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
+        <property name="show_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
+
+        <mapping class="name.krot.dz6.entity.Buyer"/>
+        <mapping class="name.krot.dz6.entity.Goods"/>
+
+    </session-factory>
+</hibernate-configuration>

@@ -19,6 +19,7 @@ public class HibernateApplication {
         EntityManager entityManager = factory.createEntityManager();
         entityManager.getTransaction().begin();
         //save
+        entityManager.persist(goods);
         entityManager.getTransaction().commit();
 
 
