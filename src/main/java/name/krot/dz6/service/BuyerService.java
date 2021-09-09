@@ -15,6 +15,5 @@ public class BuyerService {
     public List<Goods> getListGoods(Long buyerId) {
         Buyer buyer = buyerDAO.get(buyerId);
         return buyer.getGoods();
-
     }
 }
