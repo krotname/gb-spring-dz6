@@ -10,7 +10,6 @@ import java.util.List;
 
 public class HibernateApplication {
 
-
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(SpringContextConfiguration.class);
@@ -22,6 +21,9 @@ public class HibernateApplication {
         GoodsService goodsService = context.getBean(GoodsService.class);
         List<Buyer> listBuyers = goodsService.getListBuyers(3L);
         System.out.println(listBuyers);
+
+        double price = goodsService.getPrice(1L, 1L);
+        System.out.println("price: "+price);
 
     }
 }
