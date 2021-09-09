@@ -1,7 +1,6 @@
 package name.krot.dz6.dao;
 
 import name.krot.dz6.entity.Buyer;
-import name.krot.dz6.entity.Goods;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
@@ -11,13 +10,21 @@ public class BuyerDAO {
     @Autowired
     EntityManagerFactory factory;
 
-    public void save (Buyer buyer){
+    public void merge(Buyer buyer) {
+        EntityManager entityManager = factory.createEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.merge(buyer);
+        entityManager.getTransaction().commit();
+    }
+
+    public void persist(Buyer buyer) {
         EntityManager entityManager = factory.createEntityManager();
         entityManager.getTransaction().begin();
         entityManager.persist(buyer);
         entityManager.getTransaction().commit();
     }
-    public Buyer get (Long id){
+
+    public Buyer get(Long id) {
         EntityManager entityManager = factory.createEntityManager();
         entityManager.getTransaction().begin();
         Buyer reference = entityManager.find(Buyer.class, id);

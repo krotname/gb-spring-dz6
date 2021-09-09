@@ -20,6 +20,7 @@ public class Goods {
 
     private String title;
     private double price;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL,fetch= FetchType.EAGER)
+    @ToString.Exclude
     private Buyer buyer;
 }
